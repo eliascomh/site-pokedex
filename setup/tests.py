@@ -1,11 +1,18 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from pokemons.models import Pokemon
 
 class PokemonTestCase(LiveServerTestCase):
     
     def setUp(self):                
         self.browser = webdriver.Firefox('/home/eliascomh/Documents/projetos_django/tdd_busca_pokemon/')
+        self.pokemon = Pokemon.objects.create(
+            nome_pokemon = 'charmander',
+            type_fire = 'Sim',
+            type_poison = 'Não',
+            domestic = 'Não'
+        )
 
     def tearDown(self):
         self.browser.quit()

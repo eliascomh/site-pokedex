@@ -1,22 +1,65 @@
-<!DOCTYPE html>
+{% load static%}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokédex</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" media="screen" />
+  <title>Busca pokemon</title>
 </head>
 <body>
-    <a class="navbar">Busca Pokémon</a>
-    <form>
-        <input type="text" id="buscar-pokemon" placeholder="Exemplo: charmander, bulbasaur" name="buscar">
-        <button type="submit">Pesquisar</button>
-    </form>
-    
-    <div class="result-description"></div>
-    <div class="result-description"></div>
-    <div class="result-description"></div>
-    <div class="result-description"></div>
+  
 
+<nav class="navbar">
+  <a class="navbar__link" href="#">Busca Pokemon</a>
+</nav>
+
+<section class="search-section">
+    <h1 class="title">Pesquise um pokemon e descubra <span class="title__detail">4 coisas</span> sobre ele</h1>
+
+    <form class="form">
+      <input class="form__input" type="text" class="form-control" id="buscar-pokemon" name="buscar" placeholder="Exemplo: leão, urso..." aria-label="Buscar pokemon"/>
+        
+      <button type="submit" class="button">Pesquisar</button>
+    </form>
+</section>
+    {% for caracteristica in caracteristicas%}
+<section class="results-section">
+  <ul class="results">
+    <li class="result">
+      <h3 class="result-description">
+        Nome do pokemon
+      </h3>
+      <h2 class="result-title">
+        {{caracteristica.nome_pokemon}}
+      </h2>
+    </li>
+    <li class="result">
+      <h2 class="result-description">
+        Type Fire
+      </h2>
+      <h3 class="result-description">
+        {{caracteristica.type_fire}}
+      </h3>
+    </li>
+    <li class="result">
+      <h2 class="result-description">
+        Type Poison
+      </h2>
+      <h3 class="result-description">
+        {{caracteristica.type_poison}}
+      </h3>
+    </li>
+    <li class="result">
+      <h2 class="result-description">
+        Domestic
+      </h2>
+      <h3 class="result-description">
+        {{caracteristica.domestic}}
+      </h3>
+    </li>
+  </ul>
+</section>
+{% endfor %}
+        
 </body>
 </html>
